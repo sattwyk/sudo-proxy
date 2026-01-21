@@ -1,4 +1,4 @@
-# simple-proxy
+# piko
 
 Simple reverse proxy to bypass CORS.
 

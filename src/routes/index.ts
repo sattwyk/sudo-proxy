@@ -12,7 +12,10 @@ import {
 
 export default defineEventHandler(async (event) => {
   // handle cors, if applicable
-  if (isPreflightRequest(event)) return handleCors(event, {});
+  if (isPreflightRequest(event)) {
+    handleCors(event, {});
+    return;
+  }
 
   // parse destination URL
   const destination = getQuery<{ destination?: string }>(event).destination;

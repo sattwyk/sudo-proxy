@@ -44,14 +44,16 @@ export async function specificProxyRequest(
   target: string,
   opts: ProxyOptions & ExtraProxyOptions = {},
 ) {
-  let body;
+  let body: BodyInit | undefined;
   let duplex: Duplex | undefined;
   if (PayloadMethods.has(event.method)) {
     if (opts.streamRequest) {
       body = getRequestWebStream(event);
       duplex = 'half';
     } else {
-      body = await readRawBody(event, false).catch(() => undefined);
+      body = (await readRawBody(event, false).catch(() => undefined)) as
+        | BodyInit
+        | undefined;
     }
   }
 

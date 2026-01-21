@@ -7,7 +7,8 @@ export function hasBody(event: H3Event) {
 
 export async function getBodyBuffer(
   event: H3Event,
-): Promise<Buffer | undefined> {
+): Promise<BodyInit | undefined> {
   if (!hasBody(event)) return;
-  return await readRawBody(event, false);
+  const body = await readRawBody(event, false);
+  return body as BodyInit | undefined;
 }
